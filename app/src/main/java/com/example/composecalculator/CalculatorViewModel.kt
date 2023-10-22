@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 class CalculatorViewModel : ViewModel() {
 
     var state by mutableStateOf(CalculatorState())
-        private set
+       private set
 
 
     fun onAction(calculatorActions: CalculatorActions) {
@@ -19,7 +19,7 @@ class CalculatorViewModel : ViewModel() {
             is CalculatorActions.Operation -> enterOperation(calculatorActions.calculatorOperation)
             is CalculatorActions.Calculate -> performCalculation()
             is CalculatorActions.Delete -> performDeletion()
-            else -> {}
+
         }
     }
 
@@ -59,7 +59,7 @@ class CalculatorViewModel : ViewModel() {
                 is CalculatorOperation.Divide -> number1 / number2
 
                 null -> return
-                else -> {}
+
             }
 
             state = state.copy(
@@ -77,9 +77,7 @@ class CalculatorViewModel : ViewModel() {
                 number1 = state.number1 + "."
             )
             return
-        }
-
-        if(!state.number2.contains(".") && state.number2.isNotBlank()){
+        }else if(!state.number2.contains(".") && state.number2.isNotBlank()){
             state = state.copy(
                 number2 = state.number2 + "."
             )
